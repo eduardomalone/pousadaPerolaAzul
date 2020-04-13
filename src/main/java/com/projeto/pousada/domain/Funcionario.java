@@ -19,7 +19,7 @@ public class Funcionario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codigo;
+    private Integer id;
     private String nome;
     private String cargo;
     private double salario;
@@ -28,9 +28,9 @@ public class Funcionario implements Serializable {
 
     public Funcionario(){};
 
-    public Funcionario(Integer codigo, String nome, String cargo, double salario, String cpf, String telefone) {
+    public Funcionario(Integer id, String nome, String cargo, double salario, String cpf, String telefone) {
 
-        this.codigo = codigo;
+        this.id = id;
         this.nome = nome;
         this.cargo = cargo;
         this.salario = salario;
@@ -43,12 +43,12 @@ public class Funcionario implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Funcionario that = (Funcionario) o;
-        return Objects.equals(codigo, that.codigo);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codigo);
+        return Objects.hash(id);
     }
 
 

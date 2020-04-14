@@ -1,5 +1,6 @@
 package com.projeto.pousada.domain;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@Data
 @Entity
 public class Funcionario implements Serializable {
 
@@ -20,6 +22,7 @@ public class Funcionario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nome;
     private String cargo;
     private double salario;
@@ -29,7 +32,7 @@ public class Funcionario implements Serializable {
     public Funcionario(){};
 
     public Funcionario(Integer id, String nome, String cargo, double salario, String cpf, String telefone) {
-
+        super();
         this.id = id;
         this.nome = nome;
         this.cargo = cargo;

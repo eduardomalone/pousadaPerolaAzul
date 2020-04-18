@@ -1,13 +1,7 @@
 package com.projeto.pousada;
 
-import com.projeto.pousada.domain.Categoria;
-import com.projeto.pousada.domain.Consumo;
-import com.projeto.pousada.domain.Funcionario;
-import com.projeto.pousada.domain.Produto;
-import com.projeto.pousada.repositories.CategoriaRepository;
-import com.projeto.pousada.repositories.ConsumoRepository;
-import com.projeto.pousada.repositories.FuncionarioRepository;
-import com.projeto.pousada.repositories.ProdutoRepository;
+import com.projeto.pousada.domain.*;
+import com.projeto.pousada.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -28,10 +22,16 @@ public class PousadaPerolaAzulApplication implements CommandLineRunner {
 	ProdutoRepository produtoRepository;
 
 	@Autowired
-	ConsumoRepository consumoRepository;
+	 ConsumoRepository consumoRepository;
 
 	@Autowired
-	CategoriaRepository categoriaRepository;
+	 CategoriaRepository categoriaRepository;
+
+	@Autowired
+	 EstadoRepository estadoRepository;
+
+	@Autowired
+	 CidadeRepository cidadeRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PousadaPerolaAzulApplication.class, args);
@@ -65,6 +65,20 @@ public class PousadaPerolaAzulApplication implements CommandLineRunner {
 		funcionarioRepository.saveAll(Arrays.asList(func1, func2));
 		produtoRepository.saveAll(Arrays.asList(prod1, prod2));
 		consumoRepository.saveAll(Arrays.asList(consumo1, consumo2));
+
+		Estado est1 = new Estado(null, "São Paulo;");
+		Estado est2 = new Estado(null, "Minas Gerais");
+
+		Cidade cid1 = new Cidade(null, "Peruibe", est1);
+		Cidade cid2 = new Cidade(null, "Santos", est1);
+		Cidade cid3 = new Cidade(null, "Uberlandia", est2);
+
+		est1.getCidades().addAll(Arrays.asList(cid3));
+		est2.getCidades().addAll(Arrays.asList(cid2));
+		est2.getCidades().addAll(Arrays.asList(cid1));
+
+		estadoRepository.saveAll(Arrays.asList(est1,est2));
+		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
 
 	}
 }

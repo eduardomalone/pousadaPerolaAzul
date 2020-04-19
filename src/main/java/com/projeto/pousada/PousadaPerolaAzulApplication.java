@@ -1,6 +1,7 @@
 package com.projeto.pousada;
 
 import com.projeto.pousada.domain.*;
+import com.projeto.pousada.domain.enums.TipoCliente;
 import com.projeto.pousada.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -32,6 +33,12 @@ public class PousadaPerolaAzulApplication implements CommandLineRunner {
 
 	@Autowired
 	 CidadeRepository cidadeRepository;
+
+	@Autowired
+	EnderecoRepository enderecoRepository;
+
+	@Autowired
+	ClienteRepository clienteRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PousadaPerolaAzulApplication.class, args);
@@ -79,6 +86,16 @@ public class PousadaPerolaAzulApplication implements CommandLineRunner {
 
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
+
+		Cliente cli1 = new Cliente(null, "Eduardo Lucio", "eduardo@teste.com.br", "53535353", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("707070","707071"));
+		Endereco end1 = new Endereco(null, "Rua dos bobos"," numero zero", "", "qualquer um", "11080000", cli1, cid1);
+		Endereco end2 = new Endereco(null, "Rua dos sonhos"," nao existe", "", "tao tao distante", "11080000", cli1, cid2);
+		cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
+
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(end1, end2));
+
 
 	}
 }

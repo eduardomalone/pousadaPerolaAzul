@@ -1,5 +1,6 @@
 package com.projeto.pousada.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.projeto.pousada.domain.enums.TipoCliente;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class Cliente implements Serializable {
     private String cpfCnpj;
     private Integer tipo;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
     @ElementCollection

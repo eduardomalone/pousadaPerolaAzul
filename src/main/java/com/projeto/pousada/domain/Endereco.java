@@ -1,5 +1,6 @@
 package com.projeto.pousada.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,6 +27,8 @@ public class Endereco implements Serializable {
     @ManyToOne
     @JoinColumn(name="cidade_id")
     private Cidade cidade;
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="cliente_id")
     private Cliente cliente;

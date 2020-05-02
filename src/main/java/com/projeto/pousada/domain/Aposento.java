@@ -1,5 +1,6 @@
 package com.projeto.pousada.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class Aposento implements Serializable {
     @JoinColumn(name = "aposento_id")*/
     private Categoria categoria;
 
+    @JsonIgnore
     public List<Hospedagem> getHospedagens(){
         List<Hospedagem> lista = new ArrayList();
         for (ItemHospedagem x : itens ) {
@@ -37,6 +39,7 @@ public class Aposento implements Serializable {
         return lista;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.aposento")
     private Set<ItemHospedagem> itens = new HashSet<>();
 

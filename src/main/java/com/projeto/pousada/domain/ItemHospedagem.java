@@ -1,5 +1,6 @@
 package com.projeto.pousada.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.EmbeddedId;
@@ -13,6 +14,7 @@ public class ItemHospedagem implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     @EmbeddedId
     private ItemHospedagemPK id = new ItemHospedagemPK();
     private Double desconto;
@@ -43,10 +45,12 @@ public class ItemHospedagem implements Serializable {
         return Objects.hash(id);
     }
 
+    //@JsonIgnore
     public Aposento getAposento(){
         return id.getAposento();
     }
 
+    @JsonIgnore
     public Hospedagem getHospedagem(){
         return id.getHospedagem();
     }

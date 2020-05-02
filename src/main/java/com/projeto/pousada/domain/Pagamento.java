@@ -1,5 +1,6 @@
 package com.projeto.pousada.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.projeto.pousada.domain.enums.EstadoPagamento;
 import lombok.Data;
 
@@ -17,6 +18,8 @@ public  abstract class Pagamento implements Serializable {
     @Id
     private Integer id;
     private Integer estado;
+
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name="hospedagem_id")
     @MapsId

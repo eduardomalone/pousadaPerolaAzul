@@ -1,5 +1,6 @@
 package com.projeto.pousada.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
@@ -19,16 +20,21 @@ public class Hospedagem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instanteEntrada;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instanteSaida;
 
 
    /* @OneToOne(cascade = CascadeType.ALL, mappedBy = "hospedagemConta")
     private Conta conta;*/
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "hospedagem")
     private Pagamento pagamento;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     Cliente cliente;

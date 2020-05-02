@@ -26,22 +26,12 @@ public class Hospedagem implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instanteSaida;
 
-
-   /* @OneToOne(cascade = CascadeType.ALL, mappedBy = "hospedagemConta")
-    private Conta conta;*/
-
-    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "hospedagem")
     private Pagamento pagamento;
 
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     Cliente cliente;
-
-    /*@ManyToOne
-    @JoinColumn(name = "aposento_hospedagem_id")
-    private Aposento aposento;*/
 
     @OneToMany(mappedBy = "id.hospedagem")
     private Set<ItemHospedagem> itens = new HashSet<>();

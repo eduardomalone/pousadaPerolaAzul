@@ -45,7 +45,6 @@ public class ItemHospedagem implements Serializable {
         return Objects.hash(id);
     }
 
-    //@JsonIgnore
     public Aposento getAposento(){
         return id.getAposento();
     }

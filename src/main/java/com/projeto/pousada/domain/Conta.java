@@ -25,13 +25,9 @@ public class Conta implements Serializable {
     private Double valorTotal;
     private boolean pago;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "conta")
     private List<Consumo> listaConsumo;
 
-    /*@OneToOne
-    @JoinColumn(name="hospedagem_id")
-    @MapsId*/
     private  Hospedagem hospedagemConta;
 
     Conta(){};

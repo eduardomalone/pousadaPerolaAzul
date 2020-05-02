@@ -1,14 +1,12 @@
 package com.projeto.pousada.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -27,7 +25,7 @@ public class Consumo implements Serializable {
     private String dataHoraConsumo;
     private int qtdProdutoConsumido;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="conta_id")
     private Conta conta;

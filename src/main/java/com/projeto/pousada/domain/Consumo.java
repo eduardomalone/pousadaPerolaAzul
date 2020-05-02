@@ -1,5 +1,6 @@
 package com.projeto.pousada.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,13 +27,19 @@ public class Consumo implements Serializable {
     private String dataHoraConsumo;
     private int qtdProdutoConsumido;
 
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name="conta_id")
+    private Conta conta;
+
     Consumo(){};
 
-    public Consumo(Integer id, String descConsumo, String dataHoraConsumo, int qtdProdutoConsumido) {
+    public Consumo(Integer id, String descConsumo, String dataHoraConsumo, int qtdProdutoConsumido, Conta conta) {
         this.id = id;
         this.descConsumo = descConsumo;
         this.dataHoraConsumo = dataHoraConsumo;
         this.qtdProdutoConsumido = qtdProdutoConsumido;
+        this.conta = conta;
     }
 
     @Override

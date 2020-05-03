@@ -11,11 +11,11 @@ public class CategoriaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
-    private String nomeProduto;
+    private String nomeCategoria;
 
     public CategoriaDTO(Categoria obj) {
         id = obj.getId();
-        nomeProduto = obj.getNomeProduto();
+        nomeCategoria = obj.getNomeCategoria();
     }
 
     public CategoriaDTO() {

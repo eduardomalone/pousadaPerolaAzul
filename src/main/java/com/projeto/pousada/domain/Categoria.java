@@ -21,17 +21,17 @@ public class Categoria implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nomeProduto;
+    private String nomeCategoria;
 
     @ManyToMany(mappedBy = "listaCategorias")
     private List<Produto> listaProdutos = new ArrayList<>();
 
     Categoria(){};
 
-    public Categoria(Integer id, String nomeProduto) {
+    public Categoria(Integer id, String nomeCategoria) {
         super();
         this.id = id;
-        this.nomeProduto = nomeProduto;
+        this.nomeCategoria = nomeCategoria;
     }
 
     @Override

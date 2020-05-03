@@ -70,6 +70,12 @@ public class PousadaPerolaAzulApplication implements CommandLineRunner {
 
 		Categoria cat1 = new Categoria(null, "Refeicão");
 		Categoria cat2 = new Categoria(null, "Serviço de Quarto");
+		Categoria cat3 = new Categoria(null, "Lavanderia");
+		Categoria cat4 = new Categoria(null, "Suveniers");
+		Categoria cat5 = new Categoria(null, "Translado");
+		Categoria cat6 = new Categoria(null, "Passeios");
+		Categoria cat7 = new Categoria(null, "Diversos");
+		Categoria cat8 = new Categoria(null, "Salão de Beleza");
 
 
 
@@ -145,7 +151,7 @@ public class PousadaPerolaAzulApplication implements CommandLineRunner {
 
 		apo1.getItens().addAll(Arrays.asList(item1));
 		apo2.getItens().addAll(Arrays.asList(item2, item3));
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8));
 		funcionarioRepository.saveAll(Arrays.asList(func1, func2));
 		produtoRepository.saveAll(Arrays.asList(prod1, prod2));
 		//contaRepository.saveAll(Arrays.asList(conta1, conta2));

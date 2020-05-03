@@ -1,18 +1,19 @@
 package com.projeto.pousada.resources;
 
 import com.projeto.pousada.domain.Categoria;
-import com.projeto.pousada.domain.Produto;
+import com.projeto.pousada.dto.CategoriaDTO;
 import com.projeto.pousada.services.CategoriaService;
-import com.projeto.pousada.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping (value="/categoria")
+@RequestMapping (value="/categorias")
 public class CategoriaResource {
 
     @Autowired
@@ -43,5 +44,12 @@ public class CategoriaResource {
     public ResponseEntity<?> delete(@PathVariable Integer id){
         categoriaService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping( method = RequestMethod.GET)
+    public ResponseEntity<List<CategoriaDTO>> findAll(){
+        List<Categoria> list = categoriaService.findAll();
+        List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
     }
 }

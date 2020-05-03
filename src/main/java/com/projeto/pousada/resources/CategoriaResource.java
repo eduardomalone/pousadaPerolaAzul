@@ -38,4 +38,10 @@ public class CategoriaResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Integer id){
+        categoriaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

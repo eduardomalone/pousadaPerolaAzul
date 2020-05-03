@@ -1,5 +1,6 @@
 package com.projeto.pousada.resources.exceptions;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ public class StandartError {
 
     private Integer status;
     private String message;
+    @JsonFormat(pattern = "dd-MM-yyyyy")
     private Long timeStamp;
 
     public StandartError(Integer status, String message, Long timeStamp) {

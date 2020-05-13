@@ -1,6 +1,7 @@
 package com.projeto.pousada.services;
 
 import com.projeto.pousada.domain.Categoria;
+import com.projeto.pousada.dto.CategoriaDTO;
 import com.projeto.pousada.repositories.CategoriaRepository;
 import com.projeto.pousada.services.exceptions.DataIntegratyException;
 import com.projeto.pousada.services.exceptions.ObjectNotFoundException;
@@ -56,6 +57,10 @@ public class CategoriaService {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction),
                 orderBy);
         return repository.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO objDTO){
+            return new Categoria(objDTO.getId(), objDTO.getNomeCategoria());
     }
 
 }

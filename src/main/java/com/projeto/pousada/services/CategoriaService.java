@@ -23,44 +23,44 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository repository;
 
-        public Categoria find(Integer id) {
-            Optional<Categoria> obj = repository.findById(id);
-            return obj.orElseThrow(() -> new ObjectNotFoundException(
+    public Categoria find(Integer id) {
+        Optional<Categoria> obj = repository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
-        }
+    }
 
-        public Categoria insert(Categoria obj){
-            obj.setId(null);
-            return  repository.save(obj);
-        }
+    public Categoria insert(Categoria obj) {
+        obj.setId(null);
+        return repository.save(obj);
+    }
 
-        public Categoria update(Categoria obj){
-            find(obj.getId());
-            return  repository.save(obj);
-        }
+    public Categoria update(Categoria obj) {
+        find(obj.getId());
+        return repository.save(obj);
+    }
 
-    public void delete(Integer id){
+    public void delete(Integer id) {
         find(id);
-        try{
+        try {
             repository.deleteById(id);
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             log.error(e.getMessage());
             throw new DataIntegratyException("Não é possivel excluir esste item, pois possui outras informações associadas");
         }
     }
 
     public List<Categoria> findAll() {
-           return repository.findAll();
+        return repository.findAll();
     }
 
-    public Page<Categoria> findPage (Integer page, Integer linesPerPage, String orderBy, String direction){
+    public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction),
                 orderBy);
         return repository.findAll(pageRequest);
     }
 
-    public Categoria fromDTO(CategoriaDTO objDTO){
-            return new Categoria(objDTO.getId(), objDTO.getNomeCategoria());
+    public Categoria fromDTO(CategoriaDTO objDTO) {
+        return new Categoria(objDTO.getId(), objDTO.getNomeCategoria());
     }
 
 }

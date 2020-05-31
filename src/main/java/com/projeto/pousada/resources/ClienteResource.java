@@ -2,6 +2,7 @@ package com.projeto.pousada.resources;
 
 import com.projeto.pousada.domain.Cliente;
 import com.projeto.pousada.dto.ClienteDTO;
+import com.projeto.pousada.dto.ClienteNewDTO;
 import com.projeto.pousada.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,14 @@ public class ClienteResource {
     public ResponseEntity<?> find(@PathVariable Integer id){
         Cliente obj = clienteService.find(id);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    ResponseEntity<Void>insert(@Valid @RequestBody ClienteNewDTO objDTO) throws IllegalAccessException {
+        Cliente obj = clienteService.fromDTO(objDTO);
+        obj = clienteService.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objDTO.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
     @RequestMapping(value = "/{id}" , method = RequestMethod.PUT)

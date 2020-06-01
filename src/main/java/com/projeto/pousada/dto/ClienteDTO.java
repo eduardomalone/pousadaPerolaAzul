@@ -1,6 +1,7 @@
 package com.projeto.pousada.dto;
 
 import com.projeto.pousada.domain.Cliente;
+import com.projeto.pousada.services.validantions.ClienteInsert;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;

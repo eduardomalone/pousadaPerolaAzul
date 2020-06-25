@@ -2,6 +2,7 @@ package com.projeto.pousada.dto;
 
 import com.projeto.pousada.domain.Cliente;
 import com.projeto.pousada.services.validantions.ClienteInsert;
+import com.projeto.pousada.services.validantions.ClienteUpdate;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
@@ -12,6 +13,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@ClienteUpdate
 public class ClienteDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
